@@ -13,13 +13,13 @@
     <title>首页</title>
     <style>
         * {
-            moz-user-select: -moz-none;
+           /* moz-user-select: -moz-none;
             -moz-user-select: none;
             -o-user-select: none;
             -khtml-user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
-            user-select: none;
+            user-select: none;*/
         }
 
         .layui-form-label {
@@ -412,7 +412,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*法人姓名</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="legalperson" placeholder="请输入20个以内汉字"
+                <input type="text" name="title"  lay-verify="legalperson" placeholder="请输入20个以内汉字"
                        autocomplete="off" class="layui-input legal-person" maxlength="20">
             </div>
         </div>
@@ -420,7 +420,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*联系方式</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="legaltel" placeholder="请输入11位手机号"
+                <input type="text" name="title"  lay-verify="legaltel" placeholder="请输入11位手机号"
                        autocomplete="off" class="layui-input legal-tel">
             </div>
         </div>
