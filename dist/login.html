@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="icon" href="../dist/images/face/1.gif">
+    <link rel="stylesheet" href="../css/layui.css">
+    <script src="../js/layui.js"></script>
+    <title>登录</title>
+    <style>
+        * {
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .layui-form {
+            margin-top: 50px;
+        }
+
+        .layui-input {
+        display:inline-block;
+            max-width: 200px;
+            width: 80%;
+        }
+        .layui-form-label {
+            padding: 9px 10px;
+        }
+
+        .layui-input-block {
+            margin-left: 100px;
+            min-height: 36px;
+        }
+        .login {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100px;
+            min-height: 36px;
+        }
+        .layui-form-item {
+            margin:0 auto ;
+            margin-bottom: 15px;
+            clear: both;
+            width: 300px;
+
+        }
+    </style>
+</head>
+<body>
+<div style="width:100%;max-width: 768px;margin: 0 auto;margin-top: 100px">
+
+<p style="text-align: center;font-size: 30px;line-height: 60px">信息采集表</p>
+    <form class="layui-form">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required lay-verify="isTelnum" placeholder="请输入11位手机号"
+                       autocomplete="off" class="layui-input num" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码：</label>
+            <div class="layui-input-block">
+                <input type="password" name="password" required lay-verify="isPass" placeholder="请输入密码" autocomplete="off" class="layui-input pass">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block login">
+                <button style="width: 100px" class="layui-btn" lay-submit lay-filter="formDemo" id="submit">登录</button>
+
+            </div>
+        </div>
+        <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+    </form>
+</div>
+<script src="layui.js"></script>
+<script>
+    layui.use(['form','jquery'], function () {
+        var form = layui.form;
+        var $ = layui.$;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+        form.verify({
+            //校验手机位数11
+            isTelnum: [/^[1-9][0-9]{10}$/, '登录账号只能输入11位手机号'],
+            isPass: [
+                /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/
+                , '登录密码必须是6到20位英文数字混合且不能出特殊字符'
+            ],
+        });
+        $('.num').blur(function () {
+            if (!isTelnum($(this).val())) {
+                $(this).siblings('span').remove();
+                $(this).after("<span style='color:red'>✘</span>")
+            } else {
+                $(this).siblings('span').remove();
+                $(this).after("<span style='color:green'>✔ </span>")
+            }
+        })
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+        //校验手机位数11/12
+        function isTelnum(str) {
+            var reg = /^[1-9][0-9]{10}$/;
+            /*定义验证表达式*/
+            return reg.test(str);
+            /*进行验证*/
+        }
+        //校验登录密码
+        function isPass(str) {
+            var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
+            /*定义验证表达式*/
+            return reg.test(str);
+            /*进行验证*/
+        }
+    });
+</script>
+</body>
+</html>
