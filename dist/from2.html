@@ -76,7 +76,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*登录账号</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="loginaccount" placeholder="请输入11位手机号"
+                <input type="text" name="login"  lay-verify="required|loginaccount" placeholder="请输入11位手机号"
                        autocomplete="off" class="layui-input login-account">
             </div>
         </div>
@@ -84,7 +84,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*登录密码</label>
             <div class="layui-input-inline">
-                <input type="password" name="password" required lay-verify="isPass" placeholder="请输入密码"
+                <input type="password" name="password"  lay-verify="required|isPass" placeholder="请输入密码"
                        autocomplete="off" class="layui-input login-password">
             </div>
             <div class="layui-form-mid layui-word-aux" style="font-size: 12px;">请输入6-20位英文数字混合的密码</div>
@@ -93,7 +93,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*餐厅座机</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="seatmachine" placeholder="请输入11/12位手机号"
+                <input type="text" name="座机"  lay-verify="required|seatmachine" placeholder="请输入11/12位手机号"
                        autocomplete="off" class="layui-input seat-machine">
             </div>
         </div>
@@ -101,7 +101,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">餐厅座机2</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="required" placeholder="请输入11/12位手机号"
+                <input type="text" name="座机2" lay-verify="isNull" placeholder="请输入11/12位手机号"
                        autocomplete="off" class="layui-input seat-machine2">
             </div>
         </div>
@@ -109,7 +109,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*餐厅负责人</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="head" placeholder="请输入10个以内汉字"
+                <input type="text" name="负责人" lay-verify="required|head" placeholder="请输入10个以内汉字"
                        autocomplete="off" class="layui-input head" maxlength="10">
             </div>
         </div>
@@ -117,7 +117,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*负责人电话</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="headtel" placeholder="请输入11/12位手机号"
+                <input type="text" name="负责人tel"  lay-verify="required|headtel" placeholder="请输入11/12位手机号"
                        autocomplete="off" class="layui-input       head-tel">
             </div>
         </div>
@@ -147,14 +147,14 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">爱好</label>
             <div class="layui-input-block">
-                <textarea name="desc" placeholder="请输入20个以内汉字" class="layui-textarea" maxlength="20"></textarea>
+                <textarea name="desc" lay-verify="isLike" placeholder="请输入20个以内汉字" class="layui-textarea" maxlength="20"></textarea>
             </div>
         </div>
         <!--法人姓名-->
         <div class="layui-form-item">
             <label class="layui-form-label">*法人姓名</label>
             <div class="layui-input-block">
-                <input type="text" name="title"  lay-verify="legalperson" placeholder="请输入20个以内汉字"
+                <input type="text" name="法人姓名"  lay-verify="required|legalperson" placeholder="请输入20个以内汉字"
                        autocomplete="off" class="layui-input legal-person" maxlength="20">
             </div>
         </div>
@@ -162,7 +162,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*联系方式</label>
             <div class="layui-input-block">
-                <input type="text" name="title"  lay-verify="legaltel" placeholder="请输入11位手机号"
+                <input type="text" name="联系方式"  lay-verify="required|legaltel" placeholder="请输入11位手机号"
                        autocomplete="off" class="layui-input legal-tel">
             </div>
         </div>
@@ -170,7 +170,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">*法人身份证</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="required|legalider" placeholder="请输入15/18位身份证"
+                <input type="text" name="身份证" required lay-verify="required|legalider" placeholder="请输入15/18位身份证"
                        autocomplete="off" class="layui-input legal-ider">
             </div>
         </div>
@@ -183,8 +183,8 @@
     </form>
 </div>
 
-
-<script>
+<script src="main.js"></script>
+<!--<script>
     //Demo
     layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
         var laydate = layui.laydate;
@@ -651,6 +651,6 @@
         }
     });
 
-</script>
+</script>-->
 </body>
 </html>
