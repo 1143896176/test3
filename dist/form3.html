@@ -74,23 +74,30 @@
     <!--商户类型-->
     <div class="layui-form-item">
         <label class="layui-form-label">*商户类型</label>
+
         <div class="layui-input-block">
-            <input type="checkbox" name="like[0]" title="酒店" lay-filter="filter">
-            <input type="checkbox" name="like[1]" title="品牌饭店" lay-filter="filter" checked>
-            <input type="checkbox" name="like[2]" title="传统餐厅" lay-filter="filter">
-            <input type="checkbox" name="like[3]" title="特色餐厅" lay-filter="filter">
-            <input type="checkbox" name="like[4]" title="私家餐厅" lay-filter="filter">
+            <input type="checkbox" name="like" title="酒店" value="酒店" lay-filter="filter" lay-skin="primary" checked >
+            <input type="checkbox" name="like" title="品牌饭店" value="品牌饭店" lay-filter="filter" lay-skin="primary">
+            <input type="checkbox" name="like" title="传统餐厅" lay-filter="filter" value="传统餐厅" lay-skin="primary">
+            <input type="checkbox" name="like" title="特色餐厅" lay-filter="filter" value="特色餐厅" lay-skin="primary">
+            <input type="checkbox" name="like" title="私家餐厅" lay-filter="filter" value="私家餐厅" lay-skin="primary">
         </div>
     </div>
     <!--就餐场景-->
     <div class="layui-form-item">
         <label class="layui-form-label">*就餐场景</label>
-        <div class="layui-input-block">
+        <!--<div class="layui-input-block">
             <input type="checkbox" name="like[write]" title="单点">
             <input type="checkbox" name="like[read]" title="套餐" checked>
             <input type="checkbox" name="like[write]" title="婚宴">
             <input type="checkbox" name="like[dai]" title="会议">
 
+        </div>-->
+        <div class="layui-input-block">
+            <input type="checkbox" name="eat" title="单点" lay-filter="filter" lay-skin="primary" value="单点">
+            <input type="checkbox" name="eat" title="套餐" checked lay-filter="filter" lay-skin="primary" value="套餐">
+            <input type="checkbox" name="eat" title="婚宴" value="婚宴" lay-filter="filter" lay-skin="primary">
+            <input type="checkbox" name="eat" title="会议" value="会议" lay-filter="filter" lay-skin="primary">
         </div>
     </div>
     <!--租赁类型-->
@@ -110,7 +117,7 @@
         <label class="layui-form-label" style="position: absolute;top:0;left:0;">*餐具套系</label>
         <div class="layui-form-item">
             <div class="layui-input-block  select">
-                <input type="checkbox" name="like[write1]" title="套餐1">
+                <input type="checkbox" lay-skin="primary" name="setmeal"  value="套餐1" title="套餐1">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （套餐1：6炒、2汤、1鱼）
                 </div>
@@ -118,7 +125,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block select">
-                <input type="checkbox" name="like[write]" title="套餐2">
+                <input type="checkbox" lay-skin="primary" name="setmeal"  value="套餐2" title="套餐2">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （套餐2：2炒、2汤、1鱼、1虾）
                 </div>
@@ -126,7 +133,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block select">
-                <input type="checkbox" name="like[write]" title="套餐3">
+                <input type="checkbox" lay-skin="primary" name="setmeal"  value="套餐3" title="套餐3">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （套餐3：4炒、2汤、1虾）
                 </div>
@@ -134,7 +141,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block select">
-                <input type="checkbox" name="like[write]" title="套餐4">
+                <input type="checkbox" lay-skin="primary" name="setmeal"  value="套餐4"  title="套餐4">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （套餐4：4炒、4鲍鱼、1鱼）
                 </div>
@@ -142,7 +149,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block select">
-                <input type="checkbox" name="like[write]" title="套餐5">
+                <input type="checkbox" lay-skin="primary" name="setmeal"  value="套餐5" title="套餐5">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （套餐5：66炒、4汤）
                 </div>
@@ -150,7 +157,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block select">
-                <input type="checkbox" name="like[write]" title="套餐6">
+                <input type="checkbox" lay-skin="primary" name="setmeal"  value="套餐6" title="套餐6">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （套餐6：4炒、6汤）
                 </div>
@@ -158,7 +165,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block select">
-                <input type="checkbox" name="like[write]" title="套餐7">
+                <input type="checkbox" lay-skin="primary" name="setmeal"  value="套餐7" title="套餐7">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （套餐7：4炒、1鱼、1虾）
                 </div>
@@ -166,7 +173,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block select">
-                <input type="checkbox" name="like[write]" title="套餐8">
+                <input type="checkbox" lay-skin="primary" name="setmeal"  value="套餐8" title="套餐8">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （套餐8：7炒、1汤、1鱼）
                 </div>
@@ -174,7 +181,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block select">
-                <input class="select" type="checkbox" name="like[write]" title="火锅">
+                <input class="select" type="checkbox" lay-skin="primary" name="setmeal"  value="火锅" title="火锅">
                 <div class="layui-form-mid layui-word-aux" style="float: right ;width: 100%;padding-left: 10px">
                     （火锅：4肉、4菜、2多方、2多长）
                 </div>
@@ -189,6 +196,37 @@
     </div>
 </from>
 </div>
+<script src="js/checked_HasValue.js"></script>
 <script src="main.js"></script>
+<script>
+    layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
+        var laydate = layui.laydate;
+        var $ = layui.jquery
+            , upload = layui.upload;
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+
+            var hasEat = layui.checked_HasValue($, 'like', '复选框为必选项');
+            if (hasEat == false) {
+                return false;
+            }
+            var haslike = layui.checked_HasValue($, 'eat', '复选框为必选项');
+            if (haslike == false) {
+                return false;
+            }
+            var haslike = layui.checked_HasValue($, 'setmeal', '复选框为必选项');
+            if (haslike == false) {
+                return false;
+            }
+
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+
+    })
+
+</script>
 </body>
 </html>

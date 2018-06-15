@@ -1,0 +1,19 @@
+from系列页面
+1.提交监听里可以自自定义提交时机
+2.复选框验证部分在、js/*.js里
+用法
+ var haslike = layui.checked_HasValue($, 'setmeal', '复选框为必选项');
+            if (haslike == false) {
+                return false;
+            }
+ 传递参数（$ :启用jquery  setmeal：复选框的name名字  ‘’第三个为需要弹出的信息）
+
+3.定义验证
+   一、添加框架的自定义验证
+   二、添加自己的正则验证
+   三、追加对错号需要bulr事件
+       动态生成的input追加span需要用  .on（'bulr','元素选择器'，function（）{}）
+4.添加验证
+    非必填项验证需要将requier属性移除并在自定义验证里添加匹配空字符(^$)|( '其他的规则')
+
+

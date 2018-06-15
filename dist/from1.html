@@ -111,24 +111,24 @@
         <div class="layui-form-item  lable-warp">
             <label class="layui-form-label">*餐厅标签 </label>
             <div class="layui-input-block">
-                <input type="checkbox" name="like[write]" title="店面">
-                <input type="checkbox" name="like[read]" title="品牌" checked>
-                <input type="checkbox" name="like[dai]" title="星钻">
+                <input type="checkbox" name="lable" title="店面" value="店面" lay-skin="primary" >
+                <input type="checkbox" name="lable" title="品牌" value="品牌"lay-skin="primary" checked>
+                <input type="checkbox" name="lable" title="星钻" value="星钻"lay-skin="primary">
             </div>
         </div>
         <!--店铺一级分类：-->
         <div class="layui-form-item  frist">
             <label class="layui-form-label">*店铺一级分类 </label>
             <div class="layui-input-block">
-                <input type="checkbox" name="like[write]" title="一级分类">
-                <input type="checkbox" name="like[dai]" title="其他">
+                <input type="checkbox" name="class1" value="一级分类" title="一级分类" lay-skin="primary">
+                <input type="checkbox" name="class1" value="其他" title="其他" lay-skin="primary">
             </div>
         </div>
         <!--店铺二级分类：-->
         <div class="layui-form-item">
             <label class="layui-form-label">*店铺二级分类</label>
             <div class="layui-input-block">
-                <input type="checkbox" name="like[write]" title="二级分类">
+                <input type="checkbox" name="class2" title="二级分类" value="二级分类" lay-skin="primary">
 
             </div>
         </div>
@@ -197,7 +197,73 @@
         </div>
     </form>
 </div>
+<script src="js/checked_HasValue.js"></script>
 <script src="main.js"></script>
+<script>
+    layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
+        var laydate = layui.laydate;
+        var $ = layui.jquery
+            , upload = layui.upload;
+        var form = layui.form;
+        /*
+                form.on('submit(formDemo)', function (data) {
+                    var flag = false
+                    /!* var a = ['like[1]', 'like[2]', 'like[3]', 'like[4]'];
+                     var b = ['eat[1]', 'eat[2]', 'eat[3]', 'eat[4]']
+                     var b2 = []
+                     var a1 = []
 
+                     checkbox1(a, a1, data)
+                     checkbox1(b, b2, data)
+                     if (b2.length < 1 || a1.length < 1) {
+                         flag = false;
+                     } else if (b2.length >= 1 && a1.length >= 1) {
+                         flag = true;
+                     }*!/
+                    var hasvalue = layui.checked_HasValue($, 'eat[0]', '复选框为必选项');
+                    if (hasvalue == false) {
+                        return false;
+                    }
+                    debugger
+
+                    console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+                    console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+                    console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+                    //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                    layer.msg(JSON.stringify(data.field));
+                    return false
+                });
+        */
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+
+            var hasEat = layui.checked_HasValue($, 'lable', '复选框为必选项');
+            if (hasEat == false) {
+                return false;
+            }
+            var haslike = layui.checked_HasValue($, 'class1', '复选框为必选项');
+            if (haslike == false) {
+                return false;
+            }
+            var haslike = layui.checked_HasValue($, 'class2', '复选框为必选项');
+            if (haslike == false) {
+                return false;
+            }
+
+            layer.msg(JSON.stringify(data.field));
+            /* return false;*/
+        });
+
+        function checkbox1(obj, obj2, data) {
+            for (var i = 0; i < obj.length; i++) {
+                if (data.field[obj[i]] == 'on') {
+                    obj2.push('on')
+                }
+                console.log(data.field[obj[i]]);
+            }
+        }
+    })
+
+</script>
 </body>
 </html>

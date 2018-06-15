@@ -67,28 +67,27 @@
     </style>
 </head>
 <body>
-<form class="layui-form" action="" enctype="multipart/form-data">
+<form class="layui-form" action="http://127.0.0.1:8080/aaa"  enctype="multipart/form-data">
 
     <!--商户类型-->
     <div class="layui-form-item">
         <label class="layui-form-label">*商户类型</label>
         <div class="layui-input-block">
-            <input type="checkbox" name="like[0]" title="酒店" lay-filter="filter">
-            <input type="checkbox" name="like[1]" title="品牌饭店" lay-filter="filter" checked>
-            <input type="checkbox" name="like[2]" title="传统餐厅" lay-filter="filter">
-            <input type="checkbox" name="like[3]" title="特色餐厅" lay-filter="filter">
-            <input type="checkbox" name="like[4]" title="私家餐厅" lay-filter="filter">
+            <input type="checkbox" name="like" title="酒店" value="酒店" lay-filter="filter">
+            <input type="checkbox" name="like" title="品牌饭店" value="品牌饭店" lay-filter="filter" checked>
+            <input type="checkbox" name="like" title="传统餐厅" lay-filter="filter" value="传统餐厅">
+            <input type="checkbox" name="like" title="特色餐厅" lay-filter="filter" value="特色餐厅">
+            <input type="checkbox" name="like" title="私家餐厅" lay-filter="filter" value="私家餐厅">
         </div>
     </div>
     <!--就餐场景-->
     <div class="layui-form-item">
         <label class="layui-form-label">*就餐场景</label>
         <div class="layui-input-block">
-            <input type="checkbox" name="eat[1]" title="单点" lay-filter="filter">
-            <input type="checkbox" name="eat[2]" title="套餐" checked lay-filter="filter">
-            <input type="checkbox" name="eat[3]" title="婚宴" lay-filter="filter">
-            <input type="checkbox" name="eat[4]" title="会议" lay-filter="filter">
-
+            <input type="checkbox" name="eat" title="单点" lay-filter="filter" lay-skin="primary" value="单点">
+            <input type="checkbox" name="eat" title="套餐" checked lay-filter="filter" lay-skin="primary" value="套餐">
+            <input type="checkbox" name="eat" title="婚宴" value="婚宴" lay-filter="filter" lay-skin="primary">
+            <input type="checkbox" name="eat" title="会议" value="会议" lay-filter="filter" lay-skin="primary">
         </div>
     </div>
     <!---->
@@ -98,42 +97,63 @@
         </div>
     </div>
 </form>
-<!--<script src="main.js"></script>-->
+<script src="js/checked_HasValue.js"></script>
 <script>
     layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
         var laydate = layui.laydate;
         var $ = layui.jquery
             , upload = layui.upload;
         var form = layui.form;
+        /*
+                form.on('submit(formDemo)', function (data) {
+                    var flag = false
+                    /!* var a = ['like[1]', 'like[2]', 'like[3]', 'like[4]'];
+                     var b = ['eat[1]', 'eat[2]', 'eat[3]', 'eat[4]']
+                     var b2 = []
+                     var a1 = []
+
+                     checkbox1(a, a1, data)
+                     checkbox1(b, b2, data)
+                     if (b2.length < 1 || a1.length < 1) {
+                         flag = false;
+                     } else if (b2.length >= 1 && a1.length >= 1) {
+                         flag = true;
+                     }*!/
+                    var hasvalue = layui.checked_HasValue($, 'eat[0]', '复选框为必选项');
+                    if (hasvalue == false) {
+                        return false;
+                    }
+                    debugger
+
+                    console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+                    console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+                    console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+                    //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+                    layer.msg(JSON.stringify(data.field));
+                    return false
+                });
+        */
+        //监听提交
         form.on('submit(formDemo)', function (data) {
-            var a = ['like[1]', 'like[2]', 'like[3]', 'like[4]'];
-            var b = ['eat[1]', 'eat[2]', 'eat[3]', 'eat[4]']
-            var b2 = []
-            var a1 = []
-            var flag = false
-            checkbox1(a, a1, data)
-            checkbox1(b, b2, data)
-            if (b2.length < 1 || a1.length < 1) {
-                flag = false;
-            } else if (b2.length >= 1 && a1.length >= 1) {
-                flag = true;
+
+            var hasEat = layui.checked_HasValue($, 'eat', '复选框为必选项');
+            if (hasEat == false) {
+                return false;
+            }
+            var haslike = layui.checked_HasValue($, 'like', '复选框为必选项');
+            if (haslike == false) {
+                return false;
             }
 
-            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-            //阻止表单跳转。如果需要表单跳转，去掉这段即可。
             layer.msg(JSON.stringify(data.field));
-            return flag
+          /* return false;*/
         });
 
         function checkbox1(obj, obj2, data) {
-
             for (var i = 0; i < obj.length; i++) {
                 if (data.field[obj[i]] == 'on') {
                     obj2.push('on')
                 }
-
                 console.log(data.field[obj[i]]);
             }
         }

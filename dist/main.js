@@ -12,30 +12,24 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
         });
     });
 
-    form.on('checkbox(filter)', function (data) {
-        console.log(data.elem); //得到checkbox原始DOM对象
-        console.log(data.elem.checked); //是否被选中，true或者false
-        console.log(data.value); //复选框value值，也可以通过data.elem.value得到
-        console.log(data.othis); //得到美化后的DOM对象
-    });
     //监听提交
-    form.on('submit(formDemo)', function (data) {
-        var a = ['like[1]', 'like[2]', 'like[3]', 'like[4]'];
-        for (var i = 0; i < a.length; i++) {
-        if(data.field[a[i]]=='on'){
+    /* form.on('submit(formDemo)', function (data) {
+         var a = ['like[1]', 'like[2]', 'like[3]', 'like[4]'];
+         for (var i = 0; i < a.length; i++) {
+         if(data.field[a[i]]=='on'){
 
-        }
+         }
 
-            console.log(data.field[a[i]]);
-        }
+             console.log(data.field[a[i]]);
+         }
 
-        console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-        console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-        console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-        layer.msg(JSON.stringify(data.field));
-        return false;
-    });
+         console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+         console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+         console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+         layer.msg(JSON.stringify(data.field));
+         return false;
+     });*/
     $('h3').click(function () {
         layer.msg('不开心。。', {
             icon: 5,
@@ -46,8 +40,10 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
     form.verify({
         //爱好
         isLike: [/(^$)|(^[\u4E00-\u9FA5]{1,20}$)/, '爱好只能输入汉字不能有标点符号'],
+        isCaiwu:[/(^$)|(^[\u4E00-\u9FA5]{1,20}$)/,'财务人姓名格式不正确请重输'],
+        isCaiwuTel:[/(^$)|(^[1-9][0-9]{10}$)/,'财务联系方式'],
         //pankong
-        isNull: [/(^$)|(^\d{11,12}$)/, '座机2号码格式不对'],
+        isNull: [/(^$)|(^\d{11,12}$)/, '座机2号码格式不对请重输'],
         //检验是否带有两位小数
         isDecimal: [/^\d{1,5}\.\d{2}$/, '店铺面积整数部分最大5位，必须保留小数点后两位'],
         //校验手机位数11/12
@@ -56,14 +52,16 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
         isTel: [/^[1-9][0-9]{10}$/, '只能输入11手机号'],
         //校验星钻等级1-5    ^[A-Za-z0-9]+$
         isFive: [/^[1-5]{1}$/, '星钻等级为1-5'],
+
+        //校验是否是5位以内数字
+        isFiveNum: [/^[1-9]\d{0,4}$/, '大厅或包间的内容格式不正确请重输'],
+
         //校验是否是百位以内数字
         isThree: [/^[1-9][0-9]{0,2}$/, '餐具套数范围为999-1'],
         //校验是否中文名称
         isChina: [/^[\u4E00-\u9FA5]{1,30}$/, '商户名称和后缀最多可输入30个汉字'],
         isChina2: [/^[\u4E00-\u9FA5]{1,20}$/, '最多可输入20个汉字'],
         isChina3: [/^[\u4E00-\u9FA5]{1,10}$/, '最多可输入10个汉字'],
-        //我们既支持上述函数式的方式，也支持下述数组的形式
-        //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
         //校验登录密码
         isPass: [
             /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/
@@ -72,7 +70,6 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
         merchantsuffix: [/^[\u4E00-\u9FA5]{1,30}$/, '商户名称后缀最多可输入30个汉字'],
         area: [/^\d{1,5}\.\d{2}$/, '店铺面积整数部分最大5位，必须保留小数点后两位'],
         loginaccount: [/^[1-9][0-9]{10}$/, '登录账号只能输入11位手机号'],
-        /* loginpassword: [/^[1-9][0-9]{10,11}$/, '只能输入11或12位数字'],*/
         seatmachine: [/^[0-9][0-9]{10,11}$/, '餐厅座机只能输入11或12位数字'],
         head: [/^[\u4E00-\u9FA5]{1,10}$/, '餐厅负责人姓名最多可输入10个汉字'],
         headtel: [/^[0-9][0-9]{10,11}$/, '餐厅负责人电话只能输入11或12位数字'],
@@ -80,8 +77,6 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
         legaltel: [/^[1-9][0-9]{10}$/, '法人联系方式只能输入11位手机号'],
         legalider: [/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/, '法人身份证号不对请重输']
     });
-
-
     //普通图片上传
 
     var uploadInst = upload.render({
@@ -263,6 +258,7 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
             $(this).after("<span style='color:green'>✔ </span>")
         }
     });
+    //
     $('.seat-machine2').blur(function () {
         if (!isTelnum3($(this).val())) {
             $(this).siblings('span').remove();
@@ -303,40 +299,6 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
             $(this).after("<span style='color:green'>✔ </span>")
         }
     });
-
-    function isfives() {
-        if (!isFive($(this).val())) {
-            $(this).siblings('span').remove();
-            $(this).after("<span class='aa' style='color:red'>✘ </span>")
-        } else {
-            $(this).siblings('span').remove();
-            $(this).after("<span class='aa' style='color:green'>✔ </span>")
-        }
-    }
-
-    $('.lable-warp >.layui-input-block').on('blur', '.lable', function (e) {
-
-        if (!isFive($(this).val())) {
-            $(this).siblings('span').remove();
-            $(this).after("<span class='aa' style='color:red'>✘ </span>")
-        } else {
-            $(this).siblings('span').remove();
-            $(this).after("<span class='aa' style='color:green'>✔ </span>")
-        }
-    });
-    $('.select').on('blur', '.asa', function (e) {
-
-        if ($(this).val() > 0 && $(this).val() < 999) {
-            $(this).siblings('span').remove();
-            $(this).after("<span class='aa' style='color:green'>✔ </span>")
-        } else {
-            $(this).siblings('span').remove();
-            $(this).after("<span class='aa' style='color:red'>✘ </span>")
-
-        }
-    });
-    /*餐具套系*/
-    //
     $('.legal-person').blur(function () {
         if (!ischina1($(this).val())) {
             $(this).siblings('span').remove();
@@ -382,6 +344,63 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
             $(this).after("<span style='color:green'>✔ </span>")
         }
     });
+    /*星钻等级*/
+    $('.lable-warp >.layui-input-block').on('blur', '.lable', function (e) {
+
+        if (!isFive($(this).val())) {
+            $(this).siblings('span').remove();
+            $(this).after("<span class='aa' style='color:red'>✘ </span>")
+        } else {
+            $(this).siblings('span').remove();
+            $(this).after("<span class='aa' style='color:green'>✔ </span>")
+        }
+    });
+
+    /*餐具套系↓*/
+    $('.select').on('blur', '.asa', function (e) {
+
+        if ($(this).val() > 0 && $(this).val() < 999) {
+            $(this).siblings('span').remove();
+            $(this).after("<span class='aa' style='color:green'>✔ </span>")
+        } else {
+            $(this).siblings('span').remove();
+            $(this).after("<span class='aa' style='color:red'>✘ </span>")
+
+        }
+    });
+    /*  $('.lable-warp >.layui-input-block').on('blur', '.lable', function (e) {
+
+          if (!isFive($(this).val())) {
+              $(this).siblings('span').remove();
+              $(this).after("<span class='aa' style='color:red'>✘ </span>")
+          } else {
+              $(this).siblings('span').remove();
+              $(this).after("<span class='aa' style='color:green'>✔ </span>")
+          }
+      });*/
+
+    /*桌数*/
+    $('.desk-number >.layui-input-block').on('blur', '.desk', function (e) {
+        if (!isFiveNum($(this).val())) {
+            $(this).siblings('span').remove();
+            $(this).after("<span class='aa' style='color:red'>✘ </span>")
+        } else {
+            $(this).siblings('.aa').remove();
+            $(this).after("<span class='aa' style='color:green'>✔ </span>")
+        }
+    });
+    $('.desk-number >.layui-input-block').on('blur', '.desk2', function (e) {
+        if (!isFiveNum($(this).val())) {
+            $(this).siblings('.aaa').remove();
+            $(this).after("<span class='aaa' style='color:red'>✘ </span>")
+        } else {
+            $(this).siblings('span').remove();
+            $(this).after("<span class='aaa' style='color:green'>✔ </span>")
+        }
+    });
+
+    //
+
     //动态添加套餐数量
     $('.select .layui-unselect').click(function () {
 
@@ -392,14 +411,16 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
             $(this).siblings('.aa').remove()
         }
     });
+    /*星钻*/
     $('.lable-warp>div>div:nth-child(6) ').click(function () {
         if ($(this).hasClass('layui-form-checked')) {
-            $(this).after(" <input onblur=\"isfives()\" type=\"number\" name=\"title\" required lay-verify=\"isFive\" placeholder=\"请输入星钻等级1-5\"autocomplete=\"off\" class=\"layui-input lable\" style=\"display:inline-block;height:32px;width: 180px\" maxlength=\"1\">")
+            $(this).after(" <input type=\"number\" name=\"title\" required lay-verify=\"isFive\" placeholder=\"请输入星钻等级1-5\"autocomplete=\"off\" class=\"layui-input lable\" style=\"display:inline-block;height:32px;width: 180px\" maxlength=\"1\">")
         } else {
             $(this).siblings('.lable').remove()
             $(this).siblings('.aa').remove()
         }
     });
+
     $('.frist>div>div:nth-child(4)').click(function () {
         if ($(this).hasClass('layui-form-checked')) {
             $(this).after(" <textarea name=\"desc\" placeholder=\"请输入50字以内信息\" lay-verify=\"required\" class=\"layui-textarea classify\"maxlength=\"50\" ></textarea>")
@@ -409,17 +430,23 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
         }
     });
 
-    //判断是否合法
-    function getisDecimal(res) {
-        if (!isDecimal(res)) {
-            $(this).siblings('span').remove();
-            $(this).after("<span style='color:red'>✘ </span>")
+    /*动态添加桌数后的input框*/
+    $('.desk-number>div>div:nth-child(2) ').click(function () {
+        if ($(this).hasClass('layui-form-checked')) {
+            $(this).after(" <input type=\"number\" name=\"title\"  lay-verify=\"required|isFiveNum\" placeholder=\"请输入5位以内数字\"autocomplete=\"off\" class=\"layui-input ab desk\" style=\"display:inline-block;height:32px;width: 180px\" >")
         } else {
-            $(this).siblings('span').remove();
-            $(this).after("<span style='color:green'>✔ </span>")
+            $(this).siblings('.desk').remove()
+            $(this).siblings('.aa').remove()
         }
-
-    }
+    });
+    $('.desk-number>div>div:nth-child(4) ').click(function () {
+        if ($(this).hasClass('layui-form-checked')) {
+            $(this).after(" <input type=\"number\" name=\"title\"  lay-verify=\"required|isFiveNum\" placeholder=\"请输入5位以内数字\"autocomplete=\"off\" class=\"layui-input ab desk2\" style=\"display:inline-block;height:32px;width: 180px\" >")
+        } else {
+            $(this).siblings('.desk2').remove()
+            $(this).siblings('.aaa').remove()
+        }
+    });
 
     //检验是否带有两位小数
     function isDecimal(strValue) {
@@ -427,51 +454,43 @@ layui.use(['form', 'laydate', 'upload', 'jquery'], function () {
         return objRegExp.test(strValue);
     }
 
-    //校验手机位数11/12
+    //校验是否为5位数
+    function isFiveNum(strValue){
+        var objRegExp = /^[1-9]\d{0,4}$/;
+        return objRegExp.test(strValue);
+    }
 
+    //校验手机位数11/12
     function isTelnum2(str) {
         var reg = /^[0-9]{11,12}$/;///(^$)|(^\d{11,12}$)/
-        /*定义验证表达式*/
         return reg.test(str);
-        /*进行验证*/
     }
-
     function isTelnum3(str) {
         var reg = /(^$)|(^\d{11,12}$)/;///(^$)|(^\d{11,12}$)/
-        /*定义验证表达式*/
         return reg.test(str);
-        /*进行验证*/
     }
-
     function isTelnum(str) {
         var reg = /^[1-9][0-9]{10}$/;
-        /*定义验证表达式*/
         return reg.test(str);
-        /*进行验证*/
     }
 
     //校验是否中文名称
-
     function ischina(str) {
         var reg = /^[\u4E00-\u9FA5]{1,30}$/;
         return reg.test(str);
     }
-
     function ischina1(str) {
         var reg = /^[\u4E00-\u9FA5]{1,20}$/;
         return reg.test(str);
     }
-
     function ischina2(str) {
         var reg = /^[\u4E00-\u9FA5]{1,10}$/;
         return reg.test(str);
     }
-
     function ischina3(str) {
         var reg = /^[\u4E00-\u9FA5]{1,50}$/;
         return reg.test(str);
     }
-
     function ischina4(str) {
         var reg = /^[\u4E00-\u9FA5]{1,300}$/;
         return reg.test(str);
